@@ -9,7 +9,7 @@ from log import log
 
 class PRM(object):
 
-        def __init__(self, nodeId, prmIp, prmIp_2, prm_Ip3, prmPort):
+        def __init__(self, nodeId, prmIp, prmIp_2, prmIp_3, prmPort):
                 self.nodeId = str(nodeId)
                 self.prmIp = str(prmIp)
                 self.prmIp_2 = str(prmIp_2)

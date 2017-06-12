@@ -31,10 +31,10 @@ def main():
         print("Improper node id. Choose between 1 - 3")
         exit(1)
 
-    subprocess.call('start python instantiatePRM.py ' + str(nodeId) + ' ' + str(my_ip) + ' ' + str(ip_1) + ' ' + str(ip_2) + '&', shell=True)
-    subprocess.call('start python instantiateMap1.py ' + str(nodeId) + ' ' + str(my_ip) + '&', shell=True)
-    subprocess.call('start python instantiateMap2.py ' + str(nodeId) + ' ' + str(my_ip) + '&', shell=True)
-    subprocess.call('start python instantiateReducer.py ' + str(nodeId) + ' ' + str(my_ip) + '&', shell=True)
+    subprocess.call('python instantiatePRM.py ' + str(nodeId) + ' ' + str(my_ip) + ' ' + str(ip_1) + ' ' + str(ip_2) + '&', shell=True)
+    subprocess.call('python instantiateMap1.py ' + str(nodeId) + ' ' + str(my_ip) + '&', shell=True)
+    subprocess.call('python instantiateMap2.py ' + str(nodeId) + ' ' + str(my_ip) + '&', shell=True)
+    subprocess.call('python instantiateReducer.py ' + str(nodeId) + ' ' + str(my_ip) + '&', shell=True)
     
     #Instantiate CLI
     cli_1 = CLI(str(my_ip), id)
