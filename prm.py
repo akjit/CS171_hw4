@@ -111,6 +111,7 @@ class PRM(object):
         def processCommands(self):
                 connection, addr = self.listeningSocket.accept()
                 while True:
+                        print("reached here")
                         try:
                                 data = connection.recv(1024)
                         except socket.timeout:
