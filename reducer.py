@@ -31,11 +31,12 @@ class Reducer(object):
                     print("Error occurred when check for command")
                     break
             else:
-                    command = str(data.decode())
-                    filename_1 = command.split()[1]
-                    filename_2 = command.split()[2]
-                    print("Reducer processing: " + str(filename_1) + " " + str(filename_2))
-                    self.reduce(filename_1, filename_2)
+                    if command.split()[1] == "reduce":
+                        command = str(data.decode())
+                        filename_1 = command.split()[1]
+                        filename_2 = command.split()[2]
+                        print("Reducer processing: " + str(filename_1) + " " + str(filename_2))
+                        self.reduce(filename_1, filename_2)
 
     def reduce(self, in_file_1, in_file_2):
         filename = str(in_file_1).split("_")[0]
