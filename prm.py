@@ -195,7 +195,8 @@ class PRM(object):
 
                 self.startListener()           
                 self.startOutgoing()       
-                while(1):    
+                while(1):  
+                        print("made the while loop")  
                         if self.processing:
                                 print("Processing...")
                                # self.process_timeout += 1
