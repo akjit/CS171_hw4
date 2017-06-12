@@ -120,29 +120,30 @@ class PRM(object):
                                 break
                         else:
                                 command = str(data.decode())
-                                if(command.split()[0] == "replicate"):
-                                        if(self.pause == False):
-                                                #replicate freely
-                                                print("\nPRM replicate not yet finished\n")
-                                        elif(self.pause == True):
-                                                print("\nSorry, PRM is paused.\n")
-                                elif(command.split()[0] == "stop"):
-                                        self.pause = True
-                                        print("\nPRM paused!\n")
-                                elif(command.split()[0] == "resume"):
-                                        self.pause = False
-                                        print("\nPRM resumed!\n")
-                                elif(command.split()[0] == "total"):
-                                        self.cli_total()
-                                elif(command.split()[0] == "print"):
-                                        self.cli_print()
-                                elif(command.split()[0] == "merge"):
-                                        if len(command.split()) == 3:
-                                                self.cli_merge(command.split()[1], command.split()[2])
+                                if command != '':
+                                        if(command.split()[0] == "replicate"):
+                                                if(self.pause == False):
+                                                        #replicate freely
+                                                        print("\nPRM replicate not yet finished\n")
+                                                elif(self.pause == True):
+                                                        print("\nSorry, PRM is paused.\n")
+                                        elif(command.split()[0] == "stop"):
+                                                self.pause = True
+                                                print("\nPRM paused!\n")
+                                        elif(command.split()[0] == "resume"):
+                                                self.pause = False
+                                                print("\nPRM resumed!\n")
+                                        elif(command.split()[0] == "total"):
+                                                self.cli_total()
+                                        elif(command.split()[0] == "print"):
+                                                self.cli_print()
+                                        elif(command.split()[0] == "merge"):
+                                                if len(command.split()) == 3:
+                                                        self.cli_merge(command.split()[1], command.split()[2])
+                                                else:
+                                                        print("\nIncorrect number of arguments for merge command\n")
                                         else:
-                                                print("\nIncorrect number of arguments for merge command\n")
-                                else:
-                                        print("\nSorry, invalid command. ")
+                                                print("\nSorry, invalid command. ")
 
         
                                 

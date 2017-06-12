@@ -36,12 +36,13 @@ class Mapper(object):
                     break
             else:
                     command = str(data.decode())
-                    if command.split()[0] == "map":
-                        filename = command.split()[0]
-                        offset = command.split()[1]
-                        maxRange = command.split()[2]
-                        print("Map #" + str(self.id) + " processing: " + str(filename) + " " + str(offset) + " " + str(maxRange))
-                        self.map(filename, offset, maxRange)
+                    if command != '':
+                        if command.split()[0] == "map":
+                            filename = command.split()[0]
+                            offset = command.split()[1]
+                            maxRange = command.split()[2]
+                            print("Map #" + str(self.id) + " processing: " + str(filename) + " " + str(offset) + " " + str(maxRange))
+                            self.map(filename, offset, maxRange)
 
     def map(self, in_file, in_offset, in_size):
         file_name = str(in_file)

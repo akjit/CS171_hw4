@@ -32,11 +32,12 @@ class Reducer(object):
                     break
             else:
                     command = str(data.decode())
-                    if command.split()[0] == "reduce":
-                        filename_1 = command.split()[1]
-                        filename_2 = command.split()[2]
-                        print("Reducer processing: " + str(filename_1) + " " + str(filename_2))
-                        self.reduce(filename_1, filename_2)
+                    if command != '':
+                        if command.split()[0] == "reduce":
+                            filename_1 = command.split()[1]
+                            filename_2 = command.split()[2]
+                            print("Reducer processing: " + str(filename_1) + " " + str(filename_2))
+                            self.reduce(filename_1, filename_2)
 
     def reduce(self, in_file_1, in_file_2):
         filename = str(in_file_1).split("_")[0]
