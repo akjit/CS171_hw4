@@ -112,7 +112,7 @@ class CLI(object):
                 command = ""
                 print("\n\n\nMap Reduce Application for CS171, developed by Abhijit Kulkarni and Jordan Ang. \n")
                 while(1):
-                        command = input("Please enter your command according to the format: \n")
+                        command = raw_input("Please enter your command according to the format: \n")
                         if(command.split()[0] == "map"):
                                 if len(command.split()) == 4:
                                         file_name = command.split()[1]

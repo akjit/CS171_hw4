@@ -57,7 +57,7 @@ class PRM(object):
                                 print("Node " + str(self.nodeId) + ": Outgoing socket for its 2nd PRM (" + str(self.prmIp_2) + "," + str(self.prmPort) + ") ready\n")
                                 connected = True
                         except socket.error:
-                                print("Node " + str(self.nodeId) + " can't connect to ip: " + str(self.prmIp_2)))
+                                print("Node " + str(self.nodeId) + " can't connect to ip: " + str(self.prmIp_2))
                                 time.sleep(2)
                                 
                 connected = False
@@ -140,10 +140,30 @@ class PRM(object):
                                 elif(command.split()[0] == "merge"):
                                         if len(command.split()) == 3:
                                                 self.cli_merge(command.split()[1], command.split()[2])
+                                if command != '':
+                                        if(command.split()[0] == "replicate"):
+                                                if(self.pause == False):
+                                                        #replicate freely
+                                                        print("\nPRM replicate not yet finished\n")
+                                                elif(self.pause == True):
+                                                        print("\nSorry, PRM is paused.\n")
+                                        elif(command.split()[0] == "stop"):
+                                                self.pause = True
+                                                print("\nPRM paused!\n")
+                                        elif(command.split()[0] == "resume"):
+                                                self.pause = False
+                                                print("\nPRM resumed!\n")
+                                        elif(command.split()[0] == "total"):
+                                                self.cli_total()
+                                        elif(command.split()[0] == "print"):
+                                                self.cli_print()
+                                        elif(command.split()[0] == "merge"):
+                                                if len(command.split()) == 3:
+                                                        self.cli_merge(command.split()[1], command.split()[2])
+                                                else:
+                                                        print("\nIncorrect number of arguments for merge command\n")
                                         else:
-                                                print("\nIncorrect number of arguments for merge command\n")
-                                else:
-                                        print("\nSorry, invalid command. ")
+                                                print("\nSorry, invalid command. ")
 
         
                                 
