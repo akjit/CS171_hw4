@@ -57,7 +57,7 @@ class PRM(object):
                                 print("Node " + str(self.nodeId) + ": Outgoing socket for its 2nd PRM (" + str(self.prmIp_2) + "," + str(self.prmPort) + ") ready\n")
                                 connected = True
                         except socket.error:
-                                print("Node " + str(self.nodeId) + " can't connect to ip: " + str(self.prmIp_2)))
+                                print("Node " + str(self.nodeId) + " can't connect to ip: " + str(self.prmIp_2))
                                 time.sleep(2)
                                 
                 connected = False
