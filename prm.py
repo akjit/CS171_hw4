@@ -200,10 +200,9 @@ class PRM(object):
                                 print("Processing...")
                                # self.process_timeout += 1
                        # if self.process_timeout == 15:
-
+                        time.sleep(3)
                         self.processCommands()
 
-                        time.sleep(1)
 
         def startOutgoing(self):
                 connected = False
