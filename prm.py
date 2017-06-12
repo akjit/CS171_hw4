@@ -329,7 +329,7 @@ class PRM(object):
                                                         else:
                                                                 print("\nIncorrect number of arguments for merge command\n")
                                                 else:
-                                                print("\nSorry, invalid command. ")
+                                                        print("\nSorry, invalid command. ")
 
         
                                 
