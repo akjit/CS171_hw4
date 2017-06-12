@@ -187,6 +187,8 @@ class PRM(object):
                 self.paxosInstance_2 = None
                 self.paxosInstance_3 = None
 
+                self.listeningSocket = None
+
                 self.startListener()           
                 self.startOutgoing()           
                 self.processCommands()
