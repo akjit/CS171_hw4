@@ -275,7 +275,6 @@ class PRM(object):
                 self.currPaxosInstance.send_ballot(proposed_log)
                 
         def processCommands(self):
-                self.listeningSocket.setBlocking(0)
                 connection, addr = self.listeningSocket.accept()
 
                 while True:
