@@ -227,6 +227,7 @@ class PRM(object):
 
         
         def startListener(self):
+                self.listeningSocket.setBlocking(0)
                 self.listeningSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 self.listeningSocket.bind( (self.prmIp, self.prmPort) )
                 self.listeningSocket.listen(5)
@@ -272,7 +273,9 @@ class PRM(object):
                 self.currPaxosInstance.send_ballot(proposed_log)
                 
         def processCommands(self):
+                self.listeningSocket.setBlocking(0)
                 connection, addr = self.listeningSocket.accept()
+
                 while True:
                         print("reached here")
                         try:
