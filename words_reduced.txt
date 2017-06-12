@@ -1,0 +1,1 @@
+(word,4) (this,4) (is,2) (my,1) (example,4) 

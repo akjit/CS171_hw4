@@ -1,0 +1,1 @@
+(word,3) (list,1) (it,1) (is,1) (pretty,1) (cool,1) (yo,1) 
