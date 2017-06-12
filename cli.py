@@ -93,6 +93,16 @@ class CLI(object):
                 self.incomingSocket = conn
                 print("\nListening socket is ready.\n")
 
+        # def stall(self):
+        #         while True:
+        #             try:
+        #                 data = self.incomingSocket.recv(1024).decode()
+        #                 data_split = data.strip().split('||')
+        #                 if len(data) >= 1:
+        #                    print
+        #             except socket.error:
+        #                 continue
+
         def startOutgoing(self):
                 connected = False
                 while connected != True:
@@ -137,6 +147,7 @@ class CLI(object):
         def commands(self):
                 try:
                         data = self.incomingSocket.recv(1024).decode()
+                        print(data)
                 except socket.error:
                         pass
                 

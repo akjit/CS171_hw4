@@ -305,6 +305,8 @@ class PRM(object):
                 self.currPaxosInstance = PaxosInstance(PRM_id, PRM_file, PRM_IP, PRM_port, self.site_connections,self.log_index, proposed_log)
                 self.currPaxosInstance.send_ballot(proposed_log)
                 
+
+
         def processCommands(self):
                 print("in process comamands")
                 listener, _ , _ = select.select([self.listeningSocket], [],  [])
@@ -343,6 +345,7 @@ class PRM(object):
                                                 elif(command.split()[0] == "total"):
 
                                                         self.cli_total()
+                                                        self.sendMessage(self.outgoingPRM_cli, "success!")
                                                 elif(command.split()[0] == "print"):
                                                         self.cli_print()
                                                 elif(command.split()[0] == "merge"):
