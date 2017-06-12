@@ -32,7 +32,7 @@ class Reducer(object):
                     break
             else:
                     command = str(data.decode())
-                    if command.split()[1] == "reduce":
+                    if command.split()[0] == "reduce":
                         filename_1 = command.split()[1]
                         filename_2 = command.split()[2]
                         print("Reducer processing: " + str(filename_1) + " " + str(filename_2))
