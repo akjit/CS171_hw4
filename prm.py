@@ -201,7 +201,7 @@ class PRM(object):
                                 print("Processing...")
                                # self.process_timeout += 1
                        # if self.process_timeout == 15:
-                        time.sleep(2)
+                        time.sleep(0.5)
                         self.processCommands()
 
 
@@ -287,6 +287,7 @@ class PRM(object):
                 self.currPaxosInstance.send_ballot(proposed_log)
                 
         def processCommands(self):
+                print("in process comamands")
                 listener, _ , _ = select.select([self.listeningSocket], [],  [])
                 if listener:
                         for sock in listener:
