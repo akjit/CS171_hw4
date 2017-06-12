@@ -295,11 +295,12 @@ class PRM(object):
 
                                 try:
                                         data = connection.recv(1024)
+                                        print("trying to receive")
                                 except socket.timeout:
-                                        break
+                                        pass
                                 except socket.error:
                                         print("Error occurred when check for command")
-                                        break
+                                        pass
                                 else: 
                                         command = str(data.decode())
                                         command = command.strip()
