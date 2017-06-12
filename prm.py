@@ -118,8 +118,9 @@ class PRM(object):
                         except socket.error:
                                 print("Error occurred when check for command")
                                 break
-                        else:
+                        else: 
                                 command = str(data.decode())
+                                print(str(command))
                                 if(command.split()[0] == "replicate"):
                                         if(self.pause == False):
                                                 #replicate freely
