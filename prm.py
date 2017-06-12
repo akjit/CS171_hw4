@@ -200,7 +200,7 @@ class PRM(object):
                                 print("Processing...")
                                # self.process_timeout += 1
                        # if self.process_timeout == 15:
-                        time.sleep(3)
+                        time.sleep(2)
                         self.processCommands()
 
 
@@ -289,48 +289,46 @@ class PRM(object):
                 listener, _ , _ = select.select([self.listeningSocket], [],  [])
                 if listener:
                         for sock in listener:
-                                        connection, addr = self.listeningSocket.accept()
-                                        print("processing")
+                                connection, addr = self.listeningSocket.accept()
+                                print("processing")
 
 
-                while True:
-                        print("reached here")
-                        try:
-                                data = connection.recv(1024)
-                        except socket.timeout:
-                                break
-                        except socket.error:
-                                print("Error occurred when check for command")
-                                break
-                        else: 
-                                command = str(data.decode())
-                                command = command.strip()
-                                print(str(command))
-                                if command != '':
-                                        if(command.split()[0] == "replicate"):
-                                                if(self.pause == False):
-                                                        #replicate freely
-                                                        self.cli_replicate(command.split()[1])
-                                                        print("\nPRM replicate not yet finished\n")
-                                                elif(self.pause == True):
-                                                        print("\nSorry, PRM is paused.\n")
-                                        elif(command.split()[0] == "stop"):
-                                                self.pause = True
-                                                print("\nPRM paused!\n")
-                                        elif(command.split()[0] == "resume"):
-                                                self.pause = False
-                                                print("\nPRM resumed!\n")
-                                        elif(command.split()[0] == "total"):
+                                try:
+                                        data = connection.recv(1024)
+                                except socket.timeout:
+                                        break
+                                except socket.error:
+                                        print("Error occurred when check for command")
+                                        break
+                                else: 
+                                        command = str(data.decode())
+                                        command = command.strip()
+                                        print(str(command))
+                                        if command != '':
+                                                if(command.split()[0] == "replicate"):
+                                                        if(self.pause == False):
+                                                                #replicate freely
+                                                                self.cli_replicate(command.split()[1])
+                                                                print("\nPRM replicate not yet finished\n")
+                                                        elif(self.pause == True):
+                                                                print("\nSorry, PRM is paused.\n")
+                                                elif(command.split()[0] == "stop"):
+                                                        self.pause = True
+                                                        print("\nPRM paused!\n")
+                                                elif(command.split()[0] == "resume"):
+                                                        self.pause = False
+                                                        print("\nPRM resumed!\n")
+                                                elif(command.split()[0] == "total"):
 
-                                                self.cli_total()
-                                        elif(command.split()[0] == "print"):
-                                                self.cli_print()
-                                        elif(command.split()[0] == "merge"):
-                                                if len(command.split()) == 3:
-                                                        self.cli_merge(command.split()[1], command.split()[2])
+                                                        self.cli_total()
+                                                elif(command.split()[0] == "print"):
+                                                        self.cli_print()
+                                                elif(command.split()[0] == "merge"):
+                                                        if len(command.split()) == 3:
+                                                                self.cli_merge(command.split()[1], command.split()[2])
+                                                        else:
+                                                                print("\nIncorrect number of arguments for merge command\n")
                                                 else:
-                                                        print("\nIncorrect number of arguments for merge command\n")
-                                        else:
                                                 print("\nSorry, invalid command. ")
 
         
