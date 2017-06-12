@@ -16,7 +16,7 @@ def main():
         print("Please enter an id for the node")
         exit(1)
 
-    my_ip = "127.0.0.1"
+    my_ip = "0.0.0.0"
     
     if int(nodeId) == 1:
         ip_1 = "10.2.24.77"

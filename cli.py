@@ -45,7 +45,7 @@ from reducer import Reducer
 class CLI(object):
         
         def __init__(self, IP, ID):
-                self.nodeId = ID
+                self.nodeId = str(ID)
                 
                 self.prmIP = str(IP)
                 self.prmPort = int(5001)
