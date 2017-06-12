@@ -229,9 +229,9 @@ class PRM(object):
 
         
         def startListener(self):
-                self.listeningSocket.setBlocking(0)
                 self.listeningSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
                 self.listeningSocket.bind( (self.prmIp, self.prmPort) )
+                self.listeningSocket.setBlocking(0)
                 self.listeningSocket.listen(5)
                 print("Node " + str(self.nodeId) + " PRM: Listening socket (" + str(self.prmIp) + "," + str(self.prmPort) + ") ready\n")
 
