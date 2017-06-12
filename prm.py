@@ -5,6 +5,7 @@ import threading
 import socket
 import time
 import math
+import select.select
 from log import log
 
 
@@ -275,7 +276,12 @@ class PRM(object):
                 self.currPaxosInstance.send_ballot(proposed_log)
                 
         def processCommands(self):
-                connection, addr = self.listeningSocket.accept()
+                listener, _ , _ = select.select(self.listeningSocket, _, _)
+                if listener:
+                        for sock in listener:
+                                        connection, addr = self.listeningSocket.accept()
+                                        print("processing")
+
 
                 while True:
                         print("reached here")

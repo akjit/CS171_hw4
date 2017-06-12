@@ -136,6 +136,7 @@ class CLI(object):
                                 print("\nGoodbye!\n")
                                 exit(1)
                         elif(command.split()[0] == "replicate" or command.split()[0] == "stop" or command.split()[0] == "resume" or command.split()[0] == "total" or command.split()[0] == "print" or command.split()[0] == "merge"):
+                                print("sending a command!")
                                 self.prmSocket.send(str(command).encode())
                         else:
                                 print("Sorry, invalid command.\n")
