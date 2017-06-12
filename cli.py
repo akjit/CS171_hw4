@@ -64,8 +64,16 @@ class CLI(object):
                 self.reduceSocket = None
 
                 self.startOutgoing()
+                self.processing = False
 
-                self.commands()
+                while(1):  
+                        print("made the while loop")  
+                        if self.processing:
+                                print("Processing...")
+                               # self.process_timeout += 1
+                       # if self.process_timeout == 15:
+                        time.sleep(0.5)
+                        self.commands()
 
         def startOutgoing(self):
                 connected = False
@@ -111,35 +119,34 @@ class CLI(object):
         def commands(self):
                 command = ""
                 print("\n\n\nMap Reduce Application for CS171, developed by Abhijit Kulkarni and Jordan Ang. \n")
-                while(1):
-                        command = raw_input("Please enter your command according to the format: \n")
-                        if(command.split()[0] == "map"):
-                                if len(command.split()) == 4:
-                                        file_name = command.split()[1]
-                                        offset = command.split()[2]
-                                        size = command.split()[3]
-                                        half_size = (int(size) - int(offset)) / 2
-                                        range_1 = int(offset) + int(half_size)
-                                        range_2 = int(size)
-                                        params1 = str(file_name) + " " + str(offset) + " " + str(range_1)
-                                        params2 = str(file_name) + " " + str(range_1) + " " + str(range_2)
-                                        self.map1Socket.send(str(params1).encode())
-                                        self.map2Socket.send(str(params2).encode())
-                                else:
-                                        print("\nIncorrect number of arguments for map command\nmap {filename} {offset} {input_size}\n")
-                        elif(command.split()[0] == "reduce"):
-                                if len(command.split()) == 3:
-                                        self.reduceSocket.send(str(command).encode())
-                                else:
-                                        print("\nSorry, reduce {file1} {file2} is not supported yet. \n")
-                        elif(command.split()[0] == "exit"):
-                                print("\nGoodbye!\n")
-                                exit(1)
-                        elif(command.split()[0] == "replicate" or command.split()[0] == "stop" or command.split()[0] == "resume" or command.split()[0] == "total" or command.split()[0] == "print" or command.split()[0] == "merge"):
-                                print("sending a command!")
-                                self.prmSocket.send(str(command).encode())
+                command = raw_input("Please enter your command according to the format: \n")
+                if(command.split()[0] == "map"):
+                        if len(command.split()) == 4:
+                                file_name = command.split()[1]
+                                offset = command.split()[2]
+                                size = command.split()[3]
+                                half_size = (int(size) - int(offset)) / 2
+                                range_1 = int(offset) + int(half_size)
+                                range_2 = int(size)
+                                params1 = str(file_name) + " " + str(offset) + " " + str(range_1)
+                                params2 = str(file_name) + " " + str(range_1) + " " + str(range_2)
+                                self.map1Socket.send(str(params1).encode())
+                                self.map2Socket.send(str(params2).encode())
                         else:
-                                print("Sorry, invalid command.\n")
+                                print("\nIncorrect number of arguments for map command\nmap {filename} {offset} {input_size}\n")
+                elif(command.split()[0] == "reduce"):
+                        if len(command.split()) == 3:
+                                self.reduceSocket.send(str(command).encode())
+                        else:
+                                print("\nSorry, reduce {file1} {file2} is not supported yet. \n")
+                elif(command.split()[0] == "exit"):
+                        print("\nGoodbye!\n")
+                        exit(1)
+                elif(command.split()[0] == "replicate" or command.split()[0] == "stop" or command.split()[0] == "resume" or command.split()[0] == "total" or command.split()[0] == "print" or command.split()[0] == "merge"):
+                        print("sending a command!")
+                        self.prmSocket.send(str(command).encode())
+                else:
+                        print("Sorry, invalid command.\n")
 
         
 
