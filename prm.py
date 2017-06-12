@@ -288,6 +288,7 @@ class PRM(object):
                                 break
                         else: 
                                 command = str(data.decode())
+                                command = command.strip()
                                 print(str(command))
                                 if command != '':
                                         if(command.split()[0] == "replicate"):
@@ -304,6 +305,7 @@ class PRM(object):
                                                 self.pause = False
                                                 print("\nPRM resumed!\n")
                                         elif(command.split()[0] == "total"):
+
                                                 self.cli_total()
                                         elif(command.split()[0] == "print"):
                                                 self.cli_print()
