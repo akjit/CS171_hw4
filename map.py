@@ -7,7 +7,8 @@ from log import log
 
 class Mapper(object):
 
-    def __init__(self, IP, Port, ID):
+    def __init__(self, nodeId, IP, Port, ID):
+        self.nodeId = str(nodeId)
         self.ip = str(IP)
         self.port = int(Port)
         self.id = str(ID)
@@ -20,7 +21,7 @@ class Mapper(object):
         self.listeningSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.listeningSocket.bind( (self.ip, self.port) )
         self.listeningSocket.listen(5)
-        print("Listening socket (" + str(self.ip) + "," + str(self.port) + ") ready\n")
+        print("Node " + str(self.nodeId) + " Map " + str(self.id) + ": Listening socket (" + str(self.ip) + "," + str(self.port) + ") ready\n")
 
     def processCommands(self):
         connection, addr = self.listeningSocket.accept()

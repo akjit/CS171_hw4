@@ -8,8 +8,11 @@ from map import Mapper
 from reducer import Reducer
 
 def main():
+    nodeId = sys.argv[1]
+    ip = sys.argv[2]
+    
     #instantiate reduce
-    reduce = Reducer("127.0.0.1", 5004)
+    reduce = Reducer(nodeId, ip, 5004)
         
         
 

@@ -44,7 +44,9 @@ from reducer import Reducer
 
 class CLI(object):
         
-        def __init__(self, IP):
+        def __init__(self, IP, ID):
+                self.nodeId = ID
+                
                 self.prmIP = str(IP)
                 self.prmPort = int(5001)
                 self.prmSocket = None
@@ -66,21 +68,45 @@ class CLI(object):
                 self.commands()
 
         def startOutgoing(self):
-                self.prmSocket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-                self.prmSocket.connect( (self.prmIP, self.prmPort) )
-                print("Outgoing socket for PRM (" + str(self.prmIP) + "," + str(self.prmPort) + ") ready\n")
-                
-                self.map1Socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                self.map1Socket.connect( (self.map1IP, self.map1Port) )
-                print("Outgoing socket for map1 (" + str(self.map1IP) + "," + str(self.map1Port) + ") ready\n")
-                
-                self.map2Socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                self.map2Socket.connect( (self.map2IP, self.map2Port) )
-                print("Outgoing socket for map2 (" + str(self.map2IP) + "," + str(self.map2Port) + ") ready\n")
-                
-                self.reduceSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-                self.reduceSocket.connect( (self.reduceIP, self.reducePort) )
-                print("Outgoing socket for reduce (" + str(self.reduceIP) + "," + str(self.reducePort) + ") ready\n")
+                connected = False
+                while connected != True:
+                        try:
+                                self.prmSocket = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+                                self.prmSocket.connect( (self.prmIP, self.prmPort) )
+                                print("Node " + str(self.nodeId) + ": Outgoing socket for PRM (" + str(self.prmIP) + "," + str(self.prmPort) + ") ready\n")
+                                connected = True
+                        except socket.error:
+                                time.sleep(2)
+                                
+                connected = False
+                while connected != True:
+                        try:
+                                self.map1Socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                                self.map1Socket.connect( (self.map1IP, self.map1Port) )
+                                print("Node " + str(self.nodeId) + ": Outgoing socket for map1 (" + str(self.map1IP) + "," + str(self.map1Port) + ") ready\n")
+                                connected = True
+                        except socket.error:
+                                time.sleep(2)
+
+                connected = False
+                while connected != True:
+                        try:
+                                self.map2Socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                                self.map2Socket.connect( (self.map2IP, self.map2Port) )
+                                print("Node " + str(self.nodeId) + ": Outgoing socket for map2 (" + str(self.map2IP) + "," + str(self.map2Port) + ") ready\n")
+                                connected = True
+                        except socket.error:
+                                time.sleep(2)
+
+                connected = False
+                while connected != True:
+                        try:
+                                self.reduceSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                                self.reduceSocket.connect( (self.reduceIP, self.reducePort) )
+                                print("Node " + str(self.nodeId) + ": Outgoing socket for reduce (" + str(self.reduceIP) + "," + str(self.reducePort) + ") ready\n")
+                                connected = True
+                        except socket.error:
+                                time.sleep(2)
 
         def commands(self):
                 command = ""

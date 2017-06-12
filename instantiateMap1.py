@@ -7,8 +7,11 @@ from prm import PRM
 from map import Mapper
 
 def main():
+    nodeId = sys.argv[1]
+    ip = sys.argv[2]
+    
     #instantiate Map1
-    prm_1 = Mapper("127.0.0.1", 5002, 1)
+    prm_1 = Mapper(nodeId, ip, 5002, 1)
         
         
 
