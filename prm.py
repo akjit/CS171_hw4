@@ -11,6 +11,7 @@ from log import log
 
 q = {}
 
+
 class PaxosInstance(object):
         '''This is a paxos node that does all 3 roles.'''
         '''Each one of these nodes corresponds to one index stored in the PRM, so each index corresponds to one Log object'''
@@ -167,7 +168,7 @@ class PRM(object):
                 self.prmIp_3 = str(prmIp_3)
                 self.prmPort = int(prmPort)
                 self.pause = False
-                self.logs = []
+                self.logs = [None] * 20
                 
                 #hardcode logs for test
                 log1 = log()
@@ -189,10 +190,20 @@ class PRM(object):
                 self.paxosInstance_3 = None
 
                 self.listeningSocket = None
+                self.processing = False
+                self.process_timeout = 0
 
                 self.startListener()           
-                self.startOutgoing()           
-                self.processCommands()
+                self.startOutgoing()       
+                while(1):    
+                        if self.processing:
+                                print("Processing...")
+                               # self.process_timeout += 1
+                       # if self.process_timeout == 15:
+
+                        self.processCommands()
+
+                        time.sleep(1)
 
         def startOutgoing(self):
                 connected = False
