@@ -5,7 +5,7 @@ import threading
 import socket
 import time
 import math
-import select.select
+import select
 from log import log
 
 
