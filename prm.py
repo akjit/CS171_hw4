@@ -193,6 +193,10 @@ class PRM(object):
                 self.processing = False
                 self.process_timeout = 0
 
+                self.outgoingPRM_cli = None
+
+                self.CLI_ip = ["10.2.24.88", "10.2.24.77", "10.2.24.73"]
+
                 self.startListener()           
                 self.startOutgoing()       
                 while(1):  
@@ -237,6 +241,17 @@ class PRM(object):
                                 connected = True
                         except socket.error:
                                 print("Node " + str(self.nodeId) + " can't connect to ip: " + str(self.prmIp_3))
+                                time.sleep(2)
+
+                connected = False
+                while connected != True:
+                        try:
+                                self.outgoingPRM_cli = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+                                self.outgoingPRM_cli.connect( (self.CLI_ip[int(self.nodeId)], 5000) )
+                                print("Node " + str(self.nodeId) + ": Outgoing socket for its CLI (" + str(self.CLI_ip[int(self.nodeId)]) + "," + str(self.prmPort) + ") ready\n")
+                                connected = True
+                        except socket.error:
+                                print("Node " + str(self.nodeId) + " can't connect to ip: " + str(self.CLI_ip[int(self.nodeId)]))
                                 time.sleep(2)
 
         
