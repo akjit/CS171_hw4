@@ -45,6 +45,7 @@ from reducer import Reducer
 class CLI(object):
         
         def __init__(self, IP, ID):
+                print("\n\n\nMap Reduce Application for CS171, developed by Abhijit Kulkarni and Jordan Ang. \n")
                 self.nodeId = str(ID)
                 
                 self.prmIP = str(IP)
@@ -63,7 +64,13 @@ class CLI(object):
                 self.reducePort = int(5004)
                 self.reduceSocket = None
 
+                self.incomingIP = str(IP)
+                self.incomingPort = int(5000)       
+                self.incomingSocket = None    
+
+
                 self.startOutgoing()
+
                 self.processing = False
 
                 while(1):  
@@ -74,6 +81,17 @@ class CLI(object):
                        # if self.process_timeout == 15:
                         time.sleep(0.5)
                         self.commands()
+
+        def startListener(self):
+                listener = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+                listener.bind( (self.prmIp, self.prmPort) )
+                listener.setblocking(0)
+                listener.listen(5)
+                conn, addr_in = listener.accept()
+                conn.setblocking(0)
+
+                self.incomingSocket = conn
+                print("\nListening socket is ready.\n")
 
         def startOutgoing(self):
                 connected = False
@@ -117,8 +135,13 @@ class CLI(object):
                                 time.sleep(2)
 
         def commands(self):
+                try:
+                        data = self.incomingSocket.recv(1024).decode()
+                except socket.error:
+                        pass
+                
                 command = ""
-                print("\n\n\nMap Reduce Application for CS171, developed by Abhijit Kulkarni and Jordan Ang. \n")
+             
                 command = raw_input("Please enter your command according to the format: \n")
                 if(command.split()[0] == "map"):
                         if len(command.split()) == 4:

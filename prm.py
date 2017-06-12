@@ -208,6 +208,10 @@ class PRM(object):
                         time.sleep(0.5)
                         self.processCommands()
 
+        def sendMessage(self, sock, message): # can use for paxos and for cli
+                message = message.encode()
+                sock.send(message)
+
 
         def startOutgoing(self):
                 connected = False
