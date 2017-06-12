@@ -233,6 +233,7 @@ class PRM(object):
                 print("Node " + str(self.nodeId) + " PRM: Listening socket (" + str(self.prmIp) + "," + str(self.prmPort) + ") ready\n")
 
         def cli_total(self):
+                print("reached total!\n")
                 total = 0
                 for log in self.logs:
                         for key,value in log.dict.items():
