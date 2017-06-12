@@ -18,6 +18,7 @@ class Mapper(object):
         self.processCommands()
 
     def startListener(self):
+        print("Attempting to connect mapper socket to " + str(self.ip) + " " + str(self.port))
         self.listeningSocket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.listeningSocket.bind( (self.ip, self.port) )
         self.listeningSocket.listen(5)
